@@ -9,10 +9,17 @@ class BookService {
 
     async fetchedBookData() {
 
-        const url = BookService.BASE_URL + `?page=${this.page}`;
+        const params = new URLSearchParams(window.location.search);
+        const topic = params.get('topic');
+
+        const search = params.get("search");
+
+        const url = BookService.BASE_URL + `?page=${this.page}` + `&search=${search}` + `&topic=${topic}`;
 
         const data = await fetch(url)
                            .then(res => res.json());
+
+        this.bookCount = data.count
 
         const results = await data.results;
 
@@ -31,18 +38,17 @@ class BookService {
 
     nextPage() {
 
-        if (this.page > 2358) {
+        if (this.page > this.bookCount/32) {
             this.page = 1;
         } else {
             this.page++;
         }
-
     }
 
     previousPage() {
 
         if (this.page < 2) {
-            this.page = 2359;
+            this.page = Math.floor(this.bookCount/32)+1;
         } else {
             this.page--;
         }

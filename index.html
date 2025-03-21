@@ -13,8 +13,15 @@
     <header>
         <h1>Gutendex library</h1>
         <nav>
-            <button id="home-btn"><a href="./index.html">Home</a></button>
+            <button id="home-btn"><a href="./index.html?search=&topic=">Home</a></button>
             <button id="starred-btn"><a href="./starred.html">Favourites</a></button>
+            <form action="">
+                <label for="search">Search</label>
+                <input type="text" name="search" id="search">
+                <label for="topic">Topic</label>
+                <input type="text" name="topic" id="topic">
+                <button type="submit">Submit</button>
+            </form>
         </nav>
     </header>
 
