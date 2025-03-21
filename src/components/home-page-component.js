@@ -2,8 +2,9 @@ import DisplayBooks from "./display-books-component";
 
 class HomeComponent {
 
-    constructor(service) {
+    constructor(service, storage) {
         this.service = service;
+        this.storage = storage;
     }
 
     async start() {
@@ -25,7 +26,7 @@ class HomeComponent {
         for (let i = 0; i < books.length; i++) {
             const book = books[i];
 
-            const displayBooks = new DisplayBooks(book);
+            const displayBooks = new DisplayBooks(book, this.storage);
             const bookCard = displayBooks.render();
 
             container.appendChild(bookCard);

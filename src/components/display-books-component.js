@@ -1,7 +1,8 @@
 class DisplayBooks {
 
-    constructor(book, isPreferred = false) {
+    constructor(book, storage, isPreferred = false) {
         this.book = book;
+        this.storage = storage;
         this.isPreferred = isPreferred;
     }
 
@@ -31,8 +32,10 @@ class DisplayBooks {
         
         if(!this.isPreferred) {
             star.src="https://cdn0.iconfinder.com/data/icons/glyphpack/67/star-empty-512.png"
+            prefButton.addEventListener("click", () => this.saveStarredBook(this.book));
         } else {
             star.src="https://www.svgrepo.com/show/360794/star-full.svg"
+            prefButton.addEventListener("click", () => this.unsaveStarredBook(this.book));
         }
 
         prefButton.appendChild(star);
@@ -45,6 +48,10 @@ class DisplayBooks {
         container.appendChild(prefButton);
 
         return container;
+    }
+
+    saveStarredBook(book) {
+        this.storage.save(book);
     }
 
 }

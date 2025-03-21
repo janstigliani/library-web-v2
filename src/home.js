@@ -1,9 +1,10 @@
 import BookService from "./services/book-service.js";
 import HomeComponent from "./components/home-page-component.js";
-import DisplayBooks from "./components/display-books-component.js";
+import StorageService from "./services/storage-service.js";
 
 const bService = new BookService();
-const homePageComponent = new HomeComponent(bService);
+const bStorage = new StorageService();
+const homePageComponent = new HomeComponent(bService, bStorage);
 
 // bService.fetchedBookData().then(data => console.log(data));
 
