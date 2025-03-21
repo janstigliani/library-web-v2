@@ -1,3 +1,5 @@
+import DisplayBooks from "./display-books-component.js"
+
 class StarredPageComponent {
     constructor(storage) {
         this.storage = storage;
@@ -5,6 +7,7 @@ class StarredPageComponent {
 
     async start() {
         this.books = await this.storage.getPreferredBook();
+        console.log(this.books);
         this.render(this.books)
     }
 

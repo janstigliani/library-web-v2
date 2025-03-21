@@ -30,7 +30,7 @@ class DisplayBooks {
         const star = document.createElement("img")
         star.classList.add("star");
         
-        if(!this.isPreferred) {
+        if(this.storage.isBookHere(this.book)) {
             star.src="https://cdn0.iconfinder.com/data/icons/glyphpack/67/star-empty-512.png"
             prefButton.addEventListener("click", () => this.saveStarredBook(this.book));
         } else {
@@ -52,6 +52,12 @@ class DisplayBooks {
 
     saveStarredBook(book) {
         this.storage.save(book);
+        this.isPreferred = true;
+    }
+
+    unsaveStarredBook(book) {
+        this.storage.unsave(book);
+        this.isPreferred = false;
     }
 
 }
